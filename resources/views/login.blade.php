@@ -1,6 +1,7 @@
  <!DOCTYPE html>
  <html>
  <head>
+  <title>SI Pengelolaan Tilang</title>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -30,7 +31,7 @@
 <body>
   <div class="container">
     <div class="text-center">
-       <h3>Sistem Pengelolaan Tilang</h3>
+       <h3>SI Pengelolaan Tilang</h3>
        <img class="gambar" src="image/polisi.png">
     </div>
    <form>
