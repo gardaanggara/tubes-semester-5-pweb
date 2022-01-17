@@ -7,16 +7,11 @@
      <h3 class="card-title">Tambah Data Pelanggar Terbaru</h3>
   </div>
       <!-- /.card-header -->
+      <form action="{{ route('dashboard.store') }}" method="post">
+        {{ csrf_field() }}
       <div class="card-body">
-       <div class="form-group {{ $errors->has('user_id') ? ' has-error' : '' }}">
-              <label class="control-label">Penilang</label>  
-              <input type="text" name="user_id" class="form-control"  required>
-              @if ($errors->has('user_id'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('user_id') }}</strong>
-                            </span>
-                        @endif
-            </div>
+       
+
             <div class="form-group {{ $errors->has('terdakwa') ? ' has-error' : '' }}">
               <label class="control-label">Terdakwa</label>  
               <input type="text" name="terdakwa" class="form-control"  required>
@@ -53,30 +48,12 @@
                             </span>
                         @endif
             </div>
-            <div class="form-group {{ $errors->has('lokasi') ? ' has-error' : '' }}">
-              <label class="control-label">lokasi</label>  
-              <input type="text" name="lokasi" class="form-control"  required>
-              @if ($errors->has('lokasi'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('lokasi') }}</strong>
-                            </span>
-                        @endif
-            </div>
             <div class="form-group {{ $errors->has('tanggal') ? ' has-error' : '' }}">
               <label class="control-label">tanggal</label>  
-              <input type="text" name="tanggal" class="form-control"  required>
+              <input type="date" name="tanggal" class="form-control"  required>
               @if ($errors->has('tanggal'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('tanggal') }}</strong>
-                            </span>
-                        @endif
-            </div>
-            <div class="form-group {{ $errors->has('terdakwa') ? ' has-error' : '' }}">
-              <label class="control-label">Terdakwa</label>  
-              <input type="text" name="terdakwa" class="form-control"  required>
-              @if ($errors->has('terdakwa'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('terdakwa') }}</strong>
                             </span>
                         @endif
             </div>
@@ -91,8 +68,8 @@
               <button class="btn btn-primary mt-3">Tambah</button>
             </div>
           </div>
-        </div>
-
+      </div>
+</form>
 <div class="card">
   <div class="card-header">
      <h3 class="card-title">Data Pelanggar Terbaru</h3>
@@ -102,7 +79,8 @@
         <table id="example2" class="table table-bordered table-hover">
           <thead>
           <tr>
-            <th>User ID (untuk user yang menilang)</th>
+            <th>No</th>
+<!--             <th>User ID (untuk user yang menilang)</th> -->
             <th>Jenis Pelanggaran</th>
             <th>Terdakwa</th>
             <th>Denda</th>
@@ -112,43 +90,23 @@
           </tr>
           </thead>
           <tbody>
+            @php $no = 1; @endphp
+            @foreach($tilang as $data)
           <tr>
-            <td>Trident</td>
-            <td>Internet
-              Explorer 4.0
-            </td>
-            <td>Win 95+</td>
-            <td> 4</td>
-            <td>5.5</td>
-            <td>A</td>
-            <td>X</td>
+              <td>{{ $no++ }}</td>
+              <td>{{ $data->terdakwa }}</td>
+              <td>{{ $data->tilang }}</td>
+              <td>{{ $data->denda }}</td>
+              <td>{{ $data->lokasi }}</td>
+              <td>{{ $data->tanggal }}</td>
+              <td>{{ $data->keterangan }}</td> 
           </tr>
-          <tr>
-            <td>Trident</td>
-            <td>Internet
-              Explorer 5.0
-            </td>
-            <td>Win 95+</td>
-            <td>5</td>
-            <td>C</td>
-            <td>5.5</td>
-            <td>A</td>            
-          </tr>
-          <tr>
-            <td>Trident</td>
-            <td>Internet
-              Explorer 5.5
-            </td>
-            <td>Win 95+</td>
-            <td>5.5</td>
-            <td>A</td>
-            <td>5.5</td>
-            <td>A</td>
-          </tr>
+          @endforeach
           </tbody>
           <tfoot>
           <tr>
-            <th>User ID (untuk user yang menilang)</th>
+            <th>No</th>
+<!--             <th>User ID (untuk user yang menilang)</th> -->
             <th>Jenis Pelanggaran</th>
             <th>Terdakwa</th>
             <th>Denda</th>
