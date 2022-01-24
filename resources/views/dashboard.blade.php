@@ -10,8 +10,6 @@
       <form action="{{ route('dashboard.store') }}" method="post">
         {{ csrf_field() }}
       <div class="card-body">
-       
-
             <div class="form-group {{ $errors->has('terdakwa') ? ' has-error' : '' }}">
               <label class="control-label">Terdakwa</label>  
               <input type="text" name="terdakwa" class="form-control"  required>
@@ -31,7 +29,7 @@
                         @endif
             </div>
             <div class="form-group {{ $errors->has('denda') ? ' has-error' : '' }}">
-              <label class="control-label">denda</label>  
+              <label class="control-label">Denda</label>  
               <input type="text" name="denda" class="form-control"  required>
               @if ($errors->has('denda'))
                             <span class="help-block">
@@ -40,7 +38,7 @@
                         @endif
             </div>
             <div class="form-group {{ $errors->has('lokasi') ? ' has-error' : '' }}">
-              <label class="control-label">lokasi</label>  
+              <label class="control-label">Lokasi</label>  
               <input type="text" name="lokasi" class="form-control"  required>
               @if ($errors->has('lokasi'))
                             <span class="help-block">
@@ -49,7 +47,7 @@
                         @endif
             </div>
             <div class="form-group {{ $errors->has('tanggal') ? ' has-error' : '' }}">
-              <label class="control-label">tanggal</label>  
+              <label class="control-label">Tanggal</label>  
               <input type="date" name="tanggal" class="form-control"  required>
               @if ($errors->has('tanggal'))
                             <span class="help-block">
@@ -58,7 +56,7 @@
                         @endif
             </div>
             <div class="form-group {{ $errors->has('keterangan') ? ' has-error' : '' }}">
-              <label class="control-label">keterangan</label>  
+              <label class="control-label">Keterangan</label>  
               <input type="text" name="keterangan" class="form-control"  required>
               @if ($errors->has('keterangan'))
                             <span class="help-block">
@@ -80,39 +78,49 @@
           <thead>
           <tr>
             <th>No</th>
-<!--             <th>User ID (untuk user yang menilang)</th> -->
+            <th>Penilang</th>
             <th>Jenis Pelanggaran</th>
             <th>Terdakwa</th>
             <th>Denda</th>
             <th>Lokasi</th>
             <th>Tanggal</th>
             <th>Keterangan</th>
+            <th>Aksi</th>
           </tr>
           </thead>
           <tbody>
             @php $no = 1; @endphp
             @foreach($tilang as $data)
+            
           <tr>
               <td>{{ $no++ }}</td>
-              <td>{{ $data->terdakwa }}</td>
+              <td>{{ $data->user['name'] }}</td>
               <td>{{ $data->tilang }}</td>
+              <td>{{ $data->terdakwa }}</td>
               <td>{{ $data->denda }}</td>
               <td>{{ $data->lokasi }}</td>
               <td>{{ $data->tanggal }}</td>
               <td>{{ $data->keterangan }}</td> 
+              <td>
+                <form action="{{ route('dashboard.destroy', $data->id) }}"method="POST">
+                @csrf @method('delete')
+                  <a href="{{ route('dashboard.edit',$data->id) }}" class="btn btn-primary">Edit</a>
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Ingin Menghapus Data?')">Hapus</button></form></td>
           </tr>
+          
           @endforeach
           </tbody>
           <tfoot>
           <tr>
             <th>No</th>
-<!--             <th>User ID (untuk user yang menilang)</th> -->
+            <th>Penilang</th>
             <th>Jenis Pelanggaran</th>
             <th>Terdakwa</th>
             <th>Denda</th>
             <th>Lokasi</th>
             <th>Tanggal</th>
             <th>Keterangan</th>
+            <th>Aksi</th>
           </tr>
           </tfoot>
         </table>
